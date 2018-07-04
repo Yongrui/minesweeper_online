@@ -1,0 +1,9 @@
+{
+    "name": "minesweeper_online",
+    "version": "0.0.1",
+    "private": false,
+    "dependencies": {
+        "crc": "^3.5.0",
+        "pomelo": "2.2.5"
+    }
+}

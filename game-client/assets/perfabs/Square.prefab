@@ -1,0 +1,153 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "",
+    "_objFlags": 0,
+    "_rawFiles": null,
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Square",
+    "_objFlags": 0,
+    "_parent": null,
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 3
+      }
+    ],
+    "_prefab": {
+      "__id__": 4
+    },
+    "_id": "",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 35,
+      "height": 35
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_spriteFrame": {
+      "__uuid__": "c1ce8e89-713c-417f-af14-dec60ea8afd6"
+    },
+    "_type": 1,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
+  },
+  {
+    "__type__": "3dd0fo5g2BM1axiMPM5Z5mv",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "texFlag": {
+      "__uuid__": "89b2803f-0224-4f59-ae47-d305b5936896"
+    },
+    "texSquare": {
+      "__uuid__": "c1ce8e89-713c-417f-af14-dec60ea8afd6"
+    },
+    "texRedMine": {
+      "__uuid__": "624b6315-a106-4d1e-98c1-001b8dfaadf4"
+    },
+    "texBlackMine": {
+      "__uuid__": "a0146c65-ade1-4cef-bcbf-30194d669889"
+    },
+    "texNumber": [
+      {
+        "__uuid__": "c2ffa693-d459-4a4e-b99d-97a1ca1f9a5b"
+      },
+      {
+        "__uuid__": "48f32061-ba95-4820-b269-7e4ca625037b"
+      },
+      {
+        "__uuid__": "cf1719a2-03cb-4886-b6b5-d66a3803c450"
+      },
+      {
+        "__uuid__": "7b08e889-cea0-4815-ac68-497107da25fc"
+      },
+      {
+        "__uuid__": "37096d80-0ec5-4ffb-9a80-8b0d7f7338ad"
+      },
+      {
+        "__uuid__": "52dec19d-7da8-4473-a3ff-0f128ebbd7b3"
+      },
+      {
+        "__uuid__": "6077ff31-3771-41aa-9625-41a18cae49d5"
+      },
+      {
+        "__uuid__": "f43cc593-17af-42d5-976a-bdffb27bdb98"
+      },
+      {
+        "__uuid__": "18282fad-157f-4c4b-b6af-9ceeb992d84b"
+      }
+    ]
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__uuid__": "15098738-4ded-4f86-a77b-9937963c8e0e"
+    },
+    "fileId": "3bnLLdI/VIBa3ZoQnBGPyC",
+    "sync": false
+  }
+]
