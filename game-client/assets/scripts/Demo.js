@@ -22,7 +22,7 @@ cc.Class({
 	loseGame(currentSquare) {
 		this.seconds = -1;
 		this.removeEventListener();
-		this.board.uncoverAllMines(currentSquare.RO.row, currentSquare.RO.col);
+		this.board.uncoverAllMines(currentSquare);
 	},
 
 	winGame() {
