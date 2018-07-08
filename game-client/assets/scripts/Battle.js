@@ -6,9 +6,9 @@ cc.Class({
 	extends: Arena,
 
 	properties: {
-		lblUser1: cc.Label,
-		lblUser2: cc.Label,
-		panelResult: cc.Node
+		panelResult: cc.Node,
+		lblUsers: [cc.Label],
+		nodeTriangles: [cc.Node],
 	},
 
 	start() {
@@ -38,6 +38,13 @@ cc.Class({
 		});
 		pomelo.on('battle.onChangeRound', function(data) {
 			cc.log('battle.onChangeRound', data);
+			for (var uid in _this.triangles) {
+				if (uid === data.currentUID) {
+					_this.triangles[uid].active = true;
+				} else {
+					_this.triangles[uid].active = false;
+				}
+			}
 		});
 		pomelo.on('battle.gameOver', function(data) {
 			cc.log('battle.gameOver', data);
@@ -59,15 +66,16 @@ cc.Class({
 		this.addEventListener();
 
 		var playerList = data.playerList;
-		if (!!playerList[0]) {
-			this.lblUser1.string = playerList[0];
-		} else {
-			this.lblUser1.string = '';
+		for (var i = 0; i < this.lblUsers.length; i++) {
+			this.lblUsers[i].string = '';
 		}
-		if (!!playerList[1]) {
-			this.lblUser2.string = playerList[1];
-		} else {
-			this.lblUser2.string = '';
+		for (var i = 0; i < this.nodeTriangles.length; i++) {
+			this.nodeTriangles[i].active = false;
+		}
+		this.triangles = {};
+		for (var i = 0; i < playerList.length; i++) {
+			this.lblUsers[i].string = playerList[i];
+			this.triangles[playerList[i]] = this.nodeTriangles[i];
 		}
 
 		this.panelResult.getComponent('PanelTransition').hide();
@@ -85,7 +93,7 @@ cc.Class({
 		this.removeEventListener();
 
 		if (data.isExplode) {
-			_this.board.explode(data.row, data.col);
+			this.board.explode(data.row, data.col);
 		} else {
 			this.board.uncoverAllMines();
 		}
@@ -93,7 +101,7 @@ cc.Class({
 		var isWon = (data.win === DataMng.getUserID());
 		this.scheduleOnce(function() {
 			this.panelResult.getComponent('PanelTransition').show();
-			this.panelResult.getComponent('Result').init(isWon, this.node);
+			this.panelResult.getComponent('Result').showBattleResult(isWon, this.node);
 		}, 0.2);
 	},
 

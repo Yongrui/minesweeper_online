@@ -6,6 +6,9 @@ cc.Class({
 	extends: Arena,
 
 	properties: {
+		userContainer: cc.Node,
+		userItem: cc.Prefab,
+		panelResult: cc.Node
 	},
 
 	start() {
@@ -38,6 +41,22 @@ cc.Class({
 			_this.board.initialize();
 			_this.board.customizeMines(data.minesLocation);
 		});
+		pomelo.on('race.onExploded', function(data) {
+			cc.log('race.onExploded', data);
+			if (data.uid === DataMng.getUserID()) {
+				_this.removeEventListener();
+				_this.board.explode(data.row, data.col);
+			}
+			_this.showUserResult(data.uid, false);
+		});
+		pomelo.on('race.onFinished', function(data) {
+			cc.log('race.onFinished', data);
+			if (data.uid === DataMng.getUserID()) {
+				_this.removeEventListener();
+				_this.board.uncoverAllMines();
+			}
+			_this.showUserResult(data.uid, true);
+		});
 	},
 
 	init(arenaId, data) {
@@ -45,15 +64,37 @@ cc.Class({
 		this.arenaId = arenaId
 		this.board.setBoardSize(data.rows, data.cols, data.mines);
 		this.board.initialize();
-		this.board.customizeMines(data[uid].minesLocation);
+		this.board.customizeMines(data.boards[uid].minesLocation);
 		this.removeEventListener();
 		this.addEventListener();
 
-		var playerList = data.playerList;
+		var playerList = [];
+		for (let uid in data.boards) {
+			playerList.push(uid);
+		}
+
+		this.userItems = {};
+		this.userContainer.removeAllChildren();
+		for (let i = 0; i < playerList.length; i++) {
+			let item = cc.instantiate(this.userItem).getComponent('RaceUserItem');
+			this.userContainer.addChild(item.node);
+			let uid = playerList[i];
+			item.init(uid);
+			this.userItems[uid] = item;
+		}
+	},
+
+	showUserResult(uid, isWon) {
+		this.userItems[uid].showResult(isWon);
 	},
 
 	gameOver(data) {
 		this.removeEventListener();
+
+		this.scheduleOnce(function() {
+			this.panelResult.getComponent('PanelTransition').show();
+			this.panelResult.getComponent('Result').showRaceResult(data, this.node);
+		}, 0.2);
 	},
 
 	requestMarkWithFlag(row, col) {

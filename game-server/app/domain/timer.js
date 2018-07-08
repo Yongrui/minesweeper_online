@@ -20,13 +20,15 @@ Timer.prototype.close = function() {
 };
 
 Timer.prototype.tick = function() {
-	// this.tickCount += 1;
+	this.tickCount += 1;
 	// if (!!this.roundTime) {
 	// 	this.leftTimeCurrRound -= this.interval;
 	// 	if (this.leftTimeCurrRound <= 0) {
 	// 		this.arena.resetRound();
 	// 	}
 	// }
+	this.tickDuration = this.tickCount * this.interval;
+	this.arena.onTick(this.tickDuration);
 };
 
 Timer.prototype.isRunning = function() {

@@ -23,9 +23,7 @@ cc.Class({
 		});
 		pomelo.on('onRemoveRoomMember', function(data) {
 			cc.log('onRemoveRoomMember', data);
-			if (_this.node.showIn) {
-				_this.removeplayer(data.player, data.owner);
-			}
+			_this.removeplayer(data.player, data.owner);
 		});
 		pomelo.on('battle.onStartGame', function (data) {
 			cc.log('battle.onStartGame', data);

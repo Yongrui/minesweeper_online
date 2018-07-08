@@ -112,11 +112,9 @@ Battle.prototype.resetRound = function() {
 			break;
 		}
 	}
-	// if (!!lastRound) {
-	// 	this.pushMessage2All('battle.onChangeRound', {
-	// 		current: this.currentRoundUID
-	// 	}, null);
-	// }
+	this.pushMessage2All('battle.onChangeRound', {
+		currentUID: this.currentRoundUID
+	}, null);
 };
 
 Battle.prototype.gameOver = function(winUID, loseUID, isExplode, row, col) {
@@ -141,7 +139,7 @@ Battle.prototype.explode = function(loseUID, row, col) {
 	this.gameOver(winUID, loseUID, true, row, col);
 };
 
-Battle.prototype.win = function(winUID) {
+Battle.prototype.finish = function(winUID) {
 	var loseUID;
 	for (var uid in this.players) {
 		if (uid !== winUID) {

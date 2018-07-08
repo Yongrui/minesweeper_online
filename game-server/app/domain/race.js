@@ -13,8 +13,8 @@ var Race = function(opts) {
 	this.arenaType = consts.ArenaType.RACE;
 	this.playerMaxNum = 6;
 	this.boards = {};
-	this.finish = {};
-	this.finishNum = 0;
+	this.finished = {};
+	this.finishedNum = 0;
 	this.timer = new Timer({
 		arena: this,
 		interval: 100
@@ -30,7 +30,7 @@ Race.prototype.uncoverSquare = function(currUID, row, col) {
 		return consts.ARENA.FAILED;
 	}
 
-	var msg = this.toJSON4UncoverSquare(row, col);
+	var msg = this.toJSON4UncoverSquare(currUID, row, col);
 	this.pushMessage2Player(currUID, 'race.onUncoverSquare', msg, null);
 	return consts.ARENA.OK;
 };
@@ -40,7 +40,7 @@ Race.prototype.clearAround = function(currUID, row, col) {
 		return consts.ARENA.FAILED;
 	}
 
-	var msg = this.toJSON4UncoverSquare(row, col);
+	var msg = this.toJSON4UncoverSquare(currUID, row, col);
 	this.pushMessage2Player(currUID, 'race.onClearAround', msg, null);
 	return consts.ARENA.OK;
 };
@@ -51,7 +51,7 @@ Race.prototype.markWithFlag = function(currUID, row, col) {
 		return consts.ARENA.FAILED;
 	}
 
-	var msg = this.toJSON4UncoverSquare(row, col);
+	var msg = this.toJSON4UncoverSquare(currUID, row, col);
 	this.pushMessage2Player(currUID, 'race.onMarkWithFlag', msg, null);
 	return consts.ARENA.OK;
 };
@@ -62,24 +62,29 @@ Race.prototype.isPlaying = function() {
 
 Race.prototype.gameOver = function() {
 	this.timer.close();
-	this.pushMessage2All('race.gameOver', {
-	}, null);
+	this.pushMessage2All('race.gameOver', this.finished, null);
 };
 
 Race.prototype.explode = function(loseUID, row, col) {
-	this.finishNum++;
-	this.finish[loseUID] = {second: 1, result: 0};
+	this.finishedNum++;
+	var seconds = this.timer.tickDuration / 1000;
+	this.finished[loseUID] = {second: seconds, result: 0};
 	var msg = this.toJSON4UncoverSquare(loseUID, row, col);
-	this.pushMessage2Player(loseUID, 'race.onExploded', msg, null);
+	this.pushMessage2All('race.onExploded', msg, null);
+
+	if (this.finishedNum == this.playerNum) {
+		this.gameOver();
+	}
 };
 
-Race.prototype.win = function(winUID) {
-	this.finishNum++;
-	this.finish[winUID] = {second: 1, result: 1};
-	var msg = this.toJSON4UncoverSquare(loseUID, row, col);
-	this.pushMessage2Player(loseUID, 'race.onWin', msg, null);
+Race.prototype.finish = function(winUID, row, col) {
+	this.finishedNum++;
+	var seconds = this.timer.tickDuration / 1000;
+	this.finished[winUID] = {second: seconds, result: 1};
+	var msg = this.toJSON4UncoverSquare(winUID, row, col);
+	this.pushMessage2All('race.onFinished', msg, null);
 
-	if (this.finishNum == this.playerNum) {
+	if (this.finishedNum == this.playerNum) {
 		this.gameOver();
 	}
 };
@@ -107,8 +112,8 @@ Race.prototype.start = function() {
 		mines: 12,
 		arena: this
 	};
-	this.finishNum = 0;
-	this.finish = {};
+	this.finishedNum = 0;
+	this.finished = {};
 	this.boards = {};
 	for (var uid in this.players) {
 		opts.boardId = uid;
@@ -123,17 +128,19 @@ Race.prototype.start = function() {
 		cols: cols,
 		mines: mines
 	}
+	msg.boards = {};
 	for (var uid in this.boards) {
-		msg[uid] = this.boards[uid];
+		msg.boards[uid] = this.boards[uid];
 	}
 	this.pushMessage2All('race.onStartGame', msg, null);
 
 	return consts.ARENA.OK;
 };
 
-Race.prototype.toJSON4UncoverSquare = function(row, col) {
+Race.prototype.toJSON4UncoverSquare = function(uid, row, col) {
 	return {
 		row: row,
 		col: col,
+		uid: uid
 	};
 };

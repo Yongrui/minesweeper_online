@@ -28,7 +28,6 @@ Arena.prototype.createChannel = function() {
 };
 
 Arena.prototype.addPlayer = function(data, isOwner) {
-	console.log('addPlayer', data);
 	if (!this.isArenaHasPosition()) {
 		return consts.ARENA.NO_POSITION;
 	}
@@ -131,9 +130,10 @@ Arena.prototype.uncoverSquare = function() {};
 
 Arena.prototype.explode = function() {};
 
-Arena.prototype.win = function() {};
+Arena.prototype.finish = function() {};
 
 Arena.prototype.resetRound = function() {};
+Arena.prototype.onTick = function() {};
 
 Arena.prototype.toJSON = function() {
 	var players = [];

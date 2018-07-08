@@ -3,7 +3,9 @@ var Arena = require('./Arena');
 cc.Class({
 	extends: Arena,
 
-	properties: {},
+	properties: {
+		btnNewGame: cc.Node
+	},
 
 	start() {
 		this._super();
@@ -17,18 +19,21 @@ cc.Class({
 		this.addEventListener();
 		this.board.initialize();
 		this.board.generateMines();
+		this.btnNewGame.active = false;
 	},
 
 	loseGame(currentSquare) {
 		this.seconds = -1;
 		this.removeEventListener();
 		this.board.uncoverAllMines(currentSquare);
+		this.btnNewGame.active = true;
 	},
 
 	winGame() {
 		this.seconds = -1;
 		this.removeEventListener();
 		this.board.uncoverAllMines();
+		this.btnNewGame.active = true;
 	},
 
 	_longTouch(touch) {

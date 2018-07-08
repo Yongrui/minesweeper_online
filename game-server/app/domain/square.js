@@ -266,7 +266,7 @@ Square.prototype.uncoverSquare = function() {
 
 	if (currentSquare.isMine) { //Player loses
 		utils.requestAnimFrame(function() {
-			board.arena.explode(board.uid, row, col);
+			board.arena.explode(board.boardId, row, col);
 		});
 		return consts.ARENA.EXPLODED;
 	}
@@ -283,7 +283,7 @@ Square.prototype.uncoverSquare = function() {
 
 	if (board.squaresRemaining() == 0) { // Player win
 		utils.requestAnimFrame(function() {
-			board.arena.win(board.uid);
+			board.arena.finish(board.boardId, row, col);
 		});
 		return consts.ARENA.VICTORY;
 	}

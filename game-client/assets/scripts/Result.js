@@ -2,20 +2,42 @@ cc.Class({
 	extends: cc.Component,
 
 	properties: {
-		result: cc.Label,
+		battleResult: cc.Label,
 		tips: cc.Node,
 		mask: cc.Node,
-		panelRoom: cc.Node
+		panelRoom: cc.Node,
+		raceResultContainer: cc.Node,
+		raceResultItem: cc.Prefab,
 	},
 
-	init(isWon, panelArena) {
+	showBattleResult(isWon, panelArena) {
+		this.battleResult.node.active = true;
+		this.raceResultContainer.active = false;
 		if (isWon) {
-			this.result.string = 'victory';
+			this.battleResult.string = 'victory';
 		} else {
-			this.result.string = 'defeated';
+			this.battleResult.string = 'defeated';
 		}
 		this.panelArena = panelArena;
+		this.showReturnTips();
+	},
 
+	showRaceResult(resultData, panelArena) {
+		this.battleResult.node.active = false;
+		this.raceResultContainer.active = true;
+		this.raceResultContainer.removeAllChildren();
+		this.panelArena = panelArena;
+
+		for (let uid in resultData) {
+			let result = resultData[uid];
+			let item = cc.instantiate(this.raceResultItem);
+			item.getComponent('RaceResultItem').init(uid, result.result, result.second);
+			this.raceResultContainer.addChild(item);
+		}
+		this.showReturnTips();
+	},
+
+	showReturnTips() {
 		this.tips.opacity = 0;
 		var actionFadeIn = cc.fadeTo(1, 150);
 		var cbFadeIn = cc.callFunc(this.addTouchEvent, this);
