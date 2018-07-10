@@ -37,7 +37,7 @@ exp.applyJoinArena = function(data) {
 		return {result: result};
 	}
 	var arenaObj = gArenaObjDict[data.arenaId];
-	if (!!arenaObj) {
+	if (!!arenaObj && !arenaObj.isPlaying()) {
 		result = arenaObj.addPlayer(data);
 		if (result === consts.ARENA.OK) {
 			gUIDMap[data.uid] = data.arenaId;
