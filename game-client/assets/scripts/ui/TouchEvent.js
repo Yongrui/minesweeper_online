@@ -8,6 +8,28 @@ cc.Class({
 	onLoad() {
 		this.board = this.board.getComponent("Board");
 
+		if (cc.sys.isMobile) {
+			this.addTouchEventListener();
+		} else {
+			this.addMouseEventListener();
+		}
+	},
+
+	addMouseEventListener() {
+		this.node.on(cc.Node.EventType.MOUSE_UP, function (event) {
+			var currentSquare = this._convTouchSquare(event);
+			if (!currentSquare) {
+				return;
+			}
+			if (event.getButton() == cc.Event.EventMouse.BUTTON_LEFT) {
+				this.node.emit('short-touch', {currentSquare: currentSquare});
+			} else if (event.getButton() == cc.Event.EventMouse.BUTTON_RIGHT) {
+				this.node.emit('long-touch', {currentSquare: currentSquare});
+			}
+		}, this);
+	},
+
+	addTouchEventListener() {
 		this.node.on(cc.Node.EventType.TOUCH_START, function(touch) {
 			var currentSquare = this._convTouchSquare(touch);
 			if (!currentSquare) {

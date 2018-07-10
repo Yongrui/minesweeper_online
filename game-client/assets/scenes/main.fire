@@ -5057,7 +5057,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 205,
       "height": 60
     },
     "_rotationX": 0,
@@ -5085,8 +5085,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 48,
+    "_fontSize": 48,
     "_lineHeight": 60,
     "_enableWrapText": true,
     "_N$file": {
@@ -5094,7 +5094,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "练习",
+    "_N$string": "1个人玩玩",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -5335,7 +5335,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 130,
+      "width": 240,
       "height": 60
     },
     "_rotationX": 0,
@@ -5363,8 +5363,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 48,
+    "_fontSize": 48,
     "_lineHeight": 60,
     "_enableWrapText": true,
     "_N$file": {
@@ -5372,7 +5372,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "1  v  1",
+    "_N$string": "两个人玩玩",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -5613,7 +5613,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 214,
+      "width": 219,
       "height": 60
     },
     "_rotationX": 0,
@@ -5641,8 +5641,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_actualFontSize": 60,
-    "_fontSize": 60,
+    "_actualFontSize": 48,
+    "_fontSize": 48,
     "_lineHeight": 60,
     "_enableWrapText": true,
     "_N$file": {
@@ -5650,7 +5650,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "6人计时",
+    "_N$string": "6个人玩玩",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

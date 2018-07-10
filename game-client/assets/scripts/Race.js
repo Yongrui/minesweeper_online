@@ -82,6 +82,8 @@ cc.Class({
 			item.init(uid);
 			this.userItems[uid] = item;
 		}
+		
+		this.panelResult.getComponent('PanelTransition').hide();
 	},
 
 	showUserResult(uid, isWon) {
