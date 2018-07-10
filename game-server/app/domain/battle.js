@@ -27,7 +27,7 @@ Battle.prototype.uncoverSquare = function(currUID, row, col) {
 	if (currUID !== this.currentRoundUID) {
 		return consts.ARENA.FAILED;
 	}
-	this.board.uid = currUID;
+	this.board.boardId = currUID;
 	this.remarkPlayerFlags(currUID);
 
 	var result = this.board.uncoverSquare(row, col);
@@ -48,7 +48,7 @@ Battle.prototype.clearAround = function(currUID, row, col) {
 	if (currUID !== this.currentRoundUID) {
 		return consts.ARENA.FAILED;
 	}
-	this.board.uid = currUID;
+	this.board.boardId = currUID;
 	this.remarkPlayerFlags(currUID);
 
 	if (!this.board.clearAround(row, col)) {
