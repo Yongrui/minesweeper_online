@@ -196,7 +196,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 90.53,
+      "width": 91,
       "height": 40
     },
     "_rotationX": 0,
@@ -285,7 +285,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 67.67,
+      "width": 40,
       "height": 20
     },
     "_rotationX": 0,
@@ -322,7 +322,7 @@
     },
     "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "owner",
+    "_N$string": "房主",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",

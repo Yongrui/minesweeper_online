@@ -12,21 +12,30 @@ cc.Class({
 			default: [],
 			type: cc.SpriteFrame
 		},
+		spCover: cc.Sprite,
 	},
 
 	init(row, col, squareSize) {
 		this.node.width = squareSize;
 		this.node.height = squareSize;
 		this.RO = new SquareRO(row, col);
+		this.isDraw = false;
+	},
+
+	playUncoverAnim() {
+		this.spCover.node.getComponent('cc.Animation').play('UncoverSquare');
 	},
 
 	drawSquareNumber(n) {
+		this.isDraw = true;
 		var sprite = this.getComponent('cc.Sprite');
 		sprite.spriteFrame = this.texNumber[n];
+		this.playUncoverAnim();
 	},
 
 	drawFlag(visible) {
-		var sprite = this.getComponent('cc.Sprite');
+		// var sprite = this.getComponent('cc.Sprite');
+		var sprite = this.spCover;
 		if (visible) {
 			sprite.spriteFrame = this.texFlag;
 		} else {
@@ -35,12 +44,17 @@ cc.Class({
 	},
 
 	drawMine(triggered) {
+		if (this.isDraw) {
+			return;
+		}
+		this.isDraw = true;
 		var sprite = this.getComponent('cc.Sprite');
 		if (!triggered) {
 			sprite.spriteFrame = this.texBlackMine;
 		} else {
 			sprite.spriteFrame = this.texRedMine;
 		}
+		this.playUncoverAnim();
 	},
 
 	getSurroundingMineCount() {
@@ -294,6 +308,7 @@ cc.Class({
 			currentSquare = board.map[row][col];
 		}
 
+		currentSquare.RO.isRevealed = true;
 		if (currentSquare.RO.isMine) {
 			// console.log("loseGame");
 			currentSquare.game.loseGame(currentSquare);
@@ -301,7 +316,6 @@ cc.Class({
 		}
 
 		var n = currentSquare.getSurroundingMineCount();
-		currentSquare.RO.isRevealed = true;
 		board.squaresRevealed++;
 		currentSquare.drawSquareNumber(n);
 
