@@ -164,13 +164,13 @@ Battle.prototype.start = function() {
 		return consts.ARENA.FAILED;
 	}
 
-	var rows = 12;
-	var cols = 10;
-	var mines = 12;
+	var rows = 15;
+	var cols = 12;
+	var mines = 25;
 	var opts = {
-		rows: 12,
-		cols: 10,
-		mines: 12,
+		rows: rows,
+		cols: cols,
+		mines: mines,
 		arena: this
 	};
 	var tmpBoard = new Board(opts);
