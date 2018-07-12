@@ -12,7 +12,7 @@ cc.Class({
 			default: [],
 			type: cc.SpriteFrame
 		},
-		spCover: cc.Sprite,
+		spCover: cc.Node,
 	},
 
 	init(row, col, squareSize) {
@@ -23,7 +23,7 @@ cc.Class({
 	},
 
 	playUncoverAnim() {
-		this.spCover.node.getComponent('cc.Animation').play('UncoverSquare');
+		this.spCover.getComponent('cc.Animation').play('UncoverSquare');
 	},
 
 	drawSquareNumber(n) {
@@ -35,7 +35,7 @@ cc.Class({
 
 	drawFlag(visible) {
 		// var sprite = this.getComponent('cc.Sprite');
-		var sprite = this.spCover;
+		var sprite = this.spCover.getComponent('cc.Sprite');
 		if (visible) {
 			sprite.spriteFrame = this.texFlag;
 		} else {
