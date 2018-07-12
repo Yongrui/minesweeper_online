@@ -18,12 +18,12 @@ cc.Class({
 	// },
 
 	init(arenaType) {
+		this.arenaType = arenaType;
 		this.scrollView.content.removeAllChildren();
 		this.requestArenasByType(arenaType);
 	},
 
 	requestArenasByType(arenaType) {
-		this.arenaType = arenaType;
 		var _this = this;
 		pomelo.request('arena.arenaHandler.getArenasByType', {arenaType: arenaType}, function(data) {
 			cc.log('arena.arenaHandler.getArenasByType', data);
@@ -62,5 +62,9 @@ cc.Class({
 				_this.panelRoom.getComponent('Room').init(data.arena);
 			}
 		});
+	},
+
+	refreshRoomList() {
+		this.requestArenasByType(this.arenaType);
 	}
 });

@@ -1120,7 +1120,7 @@
       "__id__": 26
     },
     "_enabled": true,
-    "isAlignOnce": true,
+    "isAlignOnce": false,
     "_target": null,
     "_alignFlags": 1,
     "_left": 30,
@@ -1200,7 +1200,7 @@
       "__id__": 17
     },
     "component": "RoomList",
-    "handler": "requestAllArenas",
+    "handler": "refreshRoomList",
     "customEventData": ""
   },
   {
