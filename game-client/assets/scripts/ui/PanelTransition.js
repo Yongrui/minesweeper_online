@@ -8,7 +8,7 @@ cc.Class({
 	// use this for initialization
 	onLoad: function() {
 		this.node.showIn = false;
-		this.outOfWorld = cc.p(3000, 0);
+		this.outOfWorld = cc.v2(3000, 0);
 		this.node.position = this.outOfWorld;
 		let cbFadeOut = cc.callFunc(this.onFadeOutFinish, this);
 		let cbFadeIn = cc.callFunc(this.onFadeInFinish, this);
@@ -20,7 +20,7 @@ cc.Class({
 
 	startFadeIn: function() {
 		this.node.pauseSystemEvents(true);
-		this.node.position = cc.p(0, 0);
+		this.node.position = cc.v2(0, 0);
 		this.node.setScale(2);
 		this.node.opacity = 0;
 		this.node.runAction(this.actionFadeIn);

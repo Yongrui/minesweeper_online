@@ -54,7 +54,7 @@ cc.Class({
 				square.init(i, j, squareSize);
 				var x = j * squareSize - width / 2 + squareSize / 2;
 				var y = i * squareSize - height / 2 + squareSize / 2;
-				square.node.setPosition(cc.p(x, y));
+				square.node.setPosition(cc.v2(x, y));
 				this.map[i][j] = square;
 			}
 		}

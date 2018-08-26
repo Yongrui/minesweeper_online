@@ -41,7 +41,7 @@ cc.Class({
 			this.seconds = 0;
 		}
 
-		var currentSquare = touch.detail.currentSquare;
+		var currentSquare = touch.currentSquare;
 		if (!currentSquare.RO.isRevealed) {
 			currentSquare.toggleWithFlag();
 		}
@@ -52,7 +52,7 @@ cc.Class({
 			this.seconds = 0;
 		}
 
-		var currentSquare = touch.detail.currentSquare;
+		var currentSquare = touch.currentSquare;
 		if (!currentSquare.RO.isRevealed) {
 			currentSquare.uncoverSquare();
 		} else {

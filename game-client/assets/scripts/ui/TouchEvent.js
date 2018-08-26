@@ -73,7 +73,7 @@ cc.Class({
 	},
 
 	_convTouchSquare(touch) {
-		var newVec2 = this.node.convertTouchToNodeSpace(touch);
+		var newVec2 = this.node.convertToNodeSpace(touch.getLocation());
 		var board = this.board;
 		var squareSize = board.squareSize;
 		var row = Math.floor(newVec2.y / squareSize);
