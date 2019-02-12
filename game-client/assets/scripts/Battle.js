@@ -18,14 +18,16 @@ cc.Class({
 			cc.log('battle.onUncoverSquare', data);
 			var row = data.row;
 			var col = data.col;
-			_this.remarkWithFlags(data.flags);
+			if (DataMng.getUserID() == data.uid)
+				_this.remarkWithFlags(data.flags);
 			_this.board.uncoverSquare(row, col);
 		});
 		pomelo.on('battle.onClearAround', function(data) {
 			cc.log('battle.onClearAround', data);
 			var row = data.row;
 			var col = data.col;
-			_this.remarkWithFlags(data.flags);
+			if (DataMng.getUserID() == data.uid)
+				_this.remarkWithFlags(data.flags);
 			_this.board.clearAround(row, col);
 		});
 		pomelo.on('battle.onMarkWithFlag', function(data) {
@@ -70,7 +72,7 @@ cc.Class({
 			this.lblUsers[i].string = '';
 		}
 		for (var i = 0; i < this.nodeTriangles.length; i++) {
-			this.nodeTriangles[i].active = false;
+			this.nodeTriangles[i].active = (playerList[i] === data.currentRound);
 		}
 		this.triangles = {};
 		for (var i = 0; i < playerList.length; i++) {
