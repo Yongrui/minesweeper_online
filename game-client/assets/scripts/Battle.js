@@ -134,14 +134,14 @@ cc.Class({
 	},
 
 	_longTouch(touch) {
-		var currentSquare = touch.detail.currentSquare;
+		var currentSquare = touch.currentSquare;
 		if (!currentSquare.RO.isRevealed) {
 			this.requestMarkWithFlag(currentSquare.RO.row, currentSquare.RO.col);
 		}
 	},
 
 	_shortTouch(touch) {
-		var currentSquare = touch.detail.currentSquare;
+		var currentSquare = touch.currentSquare;
 		if (currentSquare.RO.flaggedAsMine) {
 			this.requestMarkWithFlag(currentSquare.RO.row, currentSquare.RO.col);
 		} else if (!currentSquare.RO.isRevealed) {
